@@ -1,19 +1,18 @@
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+<% unless comment.archived? %>
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
   </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-<p>
-  <%= form.label :status %><br>
-  <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
-</p>
-
 
   <p>
-    <%= form.submit %>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Destroy Comment", [comment.article, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
   </p>
 <% end %>

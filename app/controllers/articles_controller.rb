@@ -4,7 +4,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    begin
     @article = Article.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to articles_path
+    end
+
   end
 
   def new

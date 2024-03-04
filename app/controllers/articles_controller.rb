@@ -4,11 +4,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    begin
-    @article = Article.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
+    # print "Id of article: #{params[:id]}"
+    @article = Article.find_by_id(params[:id])
+    # print "Article #{@article}"
+    # artcle not available
+    if @article.nil?
       redirect_to articles_path
     end
+
 
   end
 

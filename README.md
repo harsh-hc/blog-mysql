@@ -24,5 +24,17 @@ Things you may want to cover:
 * ...
 
 
+# Add Devise
+ - bundle add devise
+
+
 mysql workbench datatypes
 full blog app
+middlewares action dispatcher
+
+Resources and resource 
+dup and copy
+
+import map
+zitwork
+healthwoker deafult

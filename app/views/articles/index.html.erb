@@ -7,10 +7,20 @@
       border: 1px solid black;
       padding: 10px;
     }
+
+    .container {
+      max-width: fit-content;
+      margin: 0 auto;
+    }
+
    </style> 
 </head>
 
-<h1>Articles</h1>
+<% if user_signed_in?%>
+  <p>
+    <%= link_to "Sign out", destroy_user_session_path , data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  </p>
+  <h1>Articles</h1>
 
 Our blog has <%= Article.public_count %> articles and counting!
 
@@ -40,3 +50,21 @@ Our blog has <%= Article.public_count %> articles and counting!
 </ul>
 
 <%= link_to "New Article", new_article_path %>
+
+<%else%>
+
+  <div class="container">
+    <h1>
+    "SK Authentication System"
+    </h1>
+  <p>
+    <%= link_to "Sign Up", new_user_registration_path %>
+  </p>
+  <p>
+    <%= link_to "Sign In", user_session_path %>
+  </p>
+  </div>
+  
+
+
+<%end%>

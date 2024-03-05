@@ -1,15 +1,42 @@
+<head>
+  <style>
+    table {
+      border: 1px solid black;
+    }
+    td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+   </style> 
+</head>
+
 <h1>Articles</h1>
 
 Our blog has <%= Article.public_count %> articles and counting!
 
 <ul>
+  <table >
+<tr>        
+  <td >Title</td>
+        <%# <td>Body</td> %>
+        <td>Created at</td>
+        <td>Actions</td>
+      </tr>
   <% @articles.each do |article| %>
     <% unless article.archived? %>
-      <li>
-        <%= link_to article.title, article %>
-      </li>
+      <tr>
+        <td><%= link_to article.title, article %></td>
+       
+        <td><%= article.created_at %></td>
+        <td>
+          <%= link_to "Destroy", [article], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          
+        <%= link_to "Edit", edit_article_path(article)  %>
+        <%= link_to "Show", article %></td>
+      </tr>
     <% end %>
   <% end %>
+  </table>
 </ul>
 
 <%= link_to "New Article", new_article_path %>
